@@ -14,4 +14,5 @@ router.register(r'users', UserViewSet, basename='user')
 urlpatterns = [
     path('admin/', admin.site.urls),  # Admin panel path
     path('api/', include(router.urls)),  # Include the router URLs under the 'api/' path
+    path('api/', include('reviews.urls')),  # Include the reviews app URLs under the 'api/' path
 ]
