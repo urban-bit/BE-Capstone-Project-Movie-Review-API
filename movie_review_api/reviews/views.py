@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .models import Review
 from .serializers import ReviewSerializer, UserSerializer
 from .permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 class ReviewViewSet(viewsets.ModelViewSet):
     """
@@ -15,6 +16,10 @@ class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+
+    # Add filtering
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['movie_title', 'rating']
 
     def perform_create(self, serializer):
         """
