@@ -3,10 +3,15 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from .models import Review
 from .serializers import ReviewSerializer, UserSerializer
 from .permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
+
+# Define the home view to render a welcome message
+def home(request):
+    return HttpResponse("<h1>Welcome to the Movie Review API!</h1>")
 
 class ReviewViewSet(viewsets.ModelViewSet):
     """
@@ -27,7 +32,6 @@ class ReviewViewSet(viewsets.ModelViewSet):
         """
         serializer.save(user=self.request.user)
 
-
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     A viewset that provides read-only actions for User model.
@@ -35,4 +39,3 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-# 
