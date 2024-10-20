@@ -36,7 +36,6 @@ INSTALLED_APPS = [
 
     # Your apps
     'reviews',  # The app where review-related models, views, etc., are defined
-    'sslserver',  # Add django-sslserver to INSTALLED_APPS
 ]
 
 MIDDLEWARE = [
